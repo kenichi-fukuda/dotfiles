@@ -26,8 +26,8 @@ ln -s $HOME/vimColorScheme/molokai/colors/molokai.vim $HOME/.vim/colors/molokai.
 #create symlink
 rm -rf $HOME/.vimrc
 rm -rf $HOME/.zshrc
-ln -s $HOME/dotFiles/.vimrc $HOME/.vimrc
-ln -s $HOME/dotFiles/.zshrc $HOME/.zshrc
+ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 
 #shell change
 chsh -s /bin/zsh
