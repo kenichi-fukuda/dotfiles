@@ -7,6 +7,7 @@ mkdir -p $HOME/.vim/colors
 
 # neobundle
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+git clone https://github.com/Shougo/vimproc $HOME/.vim/bundle/vimproc
 
 # vundle
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle

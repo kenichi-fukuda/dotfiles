@@ -61,11 +61,46 @@ set backupdir=~/.vim/backup
 " ----------------------------------------
 filetype off 
 
+" Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " manage plugins
 Bundle 'gmarik/vundle'
+
+" NeoBundle
+filetype off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+  call neobundle#rc(expand('~/.vim/bundle/'))
+endif
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+filetype plugin indent on
+filetype indent on
+syntax on
+
+NeoBundleCheck
+
+" tree file browse
+NeoBundle 'scrooloose/nerdtree'
+
+" auto parentheses close
+NeoBundle 'Townk/vim-autoclose'
+
+" HTML snippets
+NeoBundle 'mattn/emmet-vim'
+
+" grep util
+NeoBundle 'grep.vim'
+
+" syntax check
+NeoBundle 'scrooloose/syntastic'
+
+NeoBundle 'drillbits/nyan-modoki.vim'
 
 " search files
 Bundle 'unite.vim'
@@ -86,22 +121,11 @@ Bundle 'Align'
 " toggle comment outs
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 
-" HTML snippets
-Bundle 'mattn/emmet-vim'
-
-" tree explorer
-Bundle 'git://github.com/scrooloose/nerdtree.git'
-
 " bettar indentation for JavaScript
 Bundle 'git://github.com/pangloss/vim-javascript.git'
 
 " syntax and indent for coffee script
 Bundle 'kchmck/vim-coffee-script'
-
-" plugins for Titanium Desktop/Mobile
-Bundle 'git://github.com/pekepeke/titanium-vim.git'
-
-filetype plugin indent on
 
 " ----------------------------------------
 " Unite.vim
@@ -141,6 +165,11 @@ let g:NERDShutup = 1
 map <Leader>x <Plug>NERDCommenterToggle
 
 " ----------------------------------------
+" NERDTree.vim
+" ----------------------------------------
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+" ----------------------------------------
 " neocomplcache for PHP
 " ----------------------------------------
 let g:neocomplcache_enable_at_startup = 1
@@ -152,6 +181,27 @@ let g:neocomplcache_manual_completion_start_length = 0
 let g:neocomplcache_caching_percent_in_statusline = 1
 let g:neocomplcache_enable_skip_completion = 1
 let g:neocomplcache_skip_input_time = '0.5'
+
+" ----------------------------------------
+" syntastic for PHP
+" ----------------------------------------
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_echo_current_error = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_php_php_args = '-l'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" ----------------------------------------
+" nyan-modoki.vim
+" ----------------------------------------
+set laststatus=2
+set statusline=%F%m%r%h%w[%{&ff}]%=%{g:NyanModoki()}(%l,%c)[%P]
+let g:nyan_modoki_select_cat_face_number = 2
+let g:nayn_modoki_animation_enabled= 1
 
 " ----------------------------------------
 " Other Key Mappings
@@ -185,14 +235,6 @@ nnoremap <space>+ <C-w>5+
 nnoremap <space>- <C-w>5-
 nnoremap <space>> <C-w>10>
 nnoremap <space>< <C-w>10<
-
-" complete surroundings
-inoremap ' ''<Left>
-inoremap " ""<Left>
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap \| \|\|<Left>
 
 " hjkl move in insert mode
 inoremap <C-h> <Left>
