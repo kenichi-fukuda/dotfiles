@@ -105,13 +105,6 @@ NeoBundle 'drillbits/nyan-modoki.vim'
 " search files
 Bundle 'unite.vim'
 
-" complete keys
-Bundle 'Shougo/neocomplcache'
-
-" complete snippets
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-
 " git command on vim
 Bundle 'fugitive.vim'
 
@@ -136,22 +129,6 @@ let g:unite_enable_start_insert = 1
 nnoremap <space><space> :Unite buffer file_rec<CR>
 
 " ----------------------------------------
-" neocomplcache.vim
-" ----------------------------------------
-let g:neocomplcache_enable_at_startup = 1
-
-highlight Pmenu     ctermbg=8
-highlight PmenuSel  ctermbg=1
-highlight PmenuSbar ctermbg=0
-
-" "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<Tab>"
-" "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<Tab>"
-
-inoremap <expr><CR>  neocomplcache#smart_close_popup()."\<CR>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
-
-" ----------------------------------------
 " Align.vim
 " ----------------------------------------
 let g:Align_xstrlen = 3
@@ -168,19 +145,6 @@ map <Leader>x <Plug>NERDCommenterToggle
 " NERDTree.vim
 " ----------------------------------------
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-" ----------------------------------------
-" neocomplcache for PHP
-" ----------------------------------------
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_manual_completion_start_length = 0
-let g:neocomplcache_caching_percent_in_statusline = 1
-let g:neocomplcache_enable_skip_completion = 1
-let g:neocomplcache_skip_input_time = '0.5'
 
 " ----------------------------------------
 " syntastic for PHP
