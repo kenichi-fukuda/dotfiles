@@ -69,8 +69,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " NeoBundle
-filetype off
-
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
   call neobundle#rc(expand('~/.vim/bundle/'))
@@ -81,7 +79,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 filetype plugin indent on
 filetype indent on
-syntax on
 
 NeoBundleCheck
 
