@@ -57,7 +57,7 @@ set directory=~/.vim/swap
 set backupdir=~/.vim/backup
 
 " ----------------------------------------
-" Vundle
+" Plugins
 " ----------------------------------------
 filetype off 
 
