@@ -100,7 +100,16 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'drillbits/nyan-modoki.vim'
 
 " search files
-Bundle 'unite.vim'
+NeoBundle 'unite.vim'
+
+" vim shell
+NeoBundle 'Shougo/vimshell'
+
+" vim surround
+NeoBundle 'tpope/vim-surround'
+
+" multi cursor edit
+NeoBundle 'terryma/vim-multiple-cursors'
 
 " git command on vim
 Bundle 'fugitive.vim'
@@ -144,6 +153,16 @@ map <Leader>x <Plug>NERDCommenterToggle
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " ----------------------------------------
+" vim-multiple-cursors
+" ----------------------------------------
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_start_key='<F6>'
+
+" ----------------------------------------
 " syntastic for PHP
 " ----------------------------------------
 let g:syntastic_check_on_open = 1
@@ -161,7 +180,7 @@ set statusline+=%*
 " ----------------------------------------
 set laststatus=2
 set statusline=%F%m%r%h%w[%{&ff}]%=%{g:NyanModoki()}(%l,%c)[%P]
-let g:nyan_modoki_select_cat_face_number = 2
+let g:nyan_modoki_select_cat_face_number = 4
 let g:nayn_modoki_animation_enabled= 1
 
 " ----------------------------------------
