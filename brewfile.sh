@@ -34,6 +34,7 @@ brew cask install evernote
 brew cask install skype
 brew cask install kobito
 brew cask install virtualbox
+brew cask install vagrant
 brew cask install vlc
 brew cask install dropbox
 brew cask install sublime-text
