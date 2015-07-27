@@ -55,11 +55,6 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 
-# for Kamimado
-alias web='ssh 210.189.172.49'
-alias gw='ssh 210.189.172.48'
-alias web01='ssh 210.189.172.32'
-
 if which pbcopy >/dev/null 2>&1 ; then
 # Mac
     alias -g C='| pbcopy'
