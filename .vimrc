@@ -97,6 +97,9 @@ highlight VertSplit    cterm=NONE ctermfg=233   ctermbg=233
 " ----------------------------------------
 " Display
 " ----------------------------------------
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 set laststatus=2
 set number
 set ruler
