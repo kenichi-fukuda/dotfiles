@@ -11,7 +11,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin"
+export PATH=$(brew --prefix homebrew/php/php70)/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin
 
 export LANG=ja_JP.UTF-8
 
@@ -67,3 +67,4 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 
 # vim:set ft=zsh:
+eval "$(rbenv init -)"
