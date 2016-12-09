@@ -30,7 +30,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "*****************************************************************************
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'https://github.com/cohama/lexima.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'drillbits/nyan-modoki.vim'
