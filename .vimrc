@@ -241,7 +241,7 @@ let g:vdebug_force_ascii = 1
 " ----------------------------------------
 let g:php_cs_fixer_path = '$HOME/.vim/phpCsFixer/php-cs-fixer'
 let g:php_cs_fixer_level = "all"
-let g:php_cs_fixer_config = "default"
+let g:php_cs_fixer_config = "symfony"
 let g:php_cs_fixer_php_path = "php"
 let g:php_cs_fixer_enable_default_mapping = 1
 let g:php_cs_fixer_dry_run = 0
