@@ -30,7 +30,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "*****************************************************************************
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'https://github.com/cohama/lexima.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'drillbits/nyan-modoki.vim'
@@ -98,8 +98,8 @@ highlight VertSplit    cterm=NONE ctermfg=233   ctermbg=233
 " Display
 " ----------------------------------------
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-set fileformats=unix,dos,mac
+set fileencodings=utf-8
+set fileformats=unix,mac,dos
 set laststatus=2
 set number
 set ruler
@@ -241,7 +241,7 @@ let g:vdebug_force_ascii = 1
 " ----------------------------------------
 let g:php_cs_fixer_path = '$HOME/.vim/phpCsFixer/php-cs-fixer'
 let g:php_cs_fixer_level = "all"
-let g:php_cs_fixer_config = "default"
+let g:php_cs_fixer_config = "symfony"
 let g:php_cs_fixer_php_path = "php"
 let g:php_cs_fixer_enable_default_mapping = 1
 let g:php_cs_fixer_dry_run = 0
