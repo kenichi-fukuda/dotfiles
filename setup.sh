@@ -1,18 +1,28 @@
-#!/bin/sh
-
-#backup dir
-mkdir -p $HOME/.vim/swap
-mkdir -p $HOME/.vim/backup
-
-# neobundle
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
-git clone https://github.com/Shougo/vimproc $HOME/.vim/bundle/vimproc
-
-# vundle
-git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle
+#!/usr/bin/env bash
 
 # oh-my-zsh
 git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
+
+mkdir -p \
+    $HOME/local/bin \
+    $HOME/.vim/vim-ref/cache \
+    $HOME/.vim/tags \
+    $HOME/.vim/phpCsFixer/ \
+    $HOME/.vim/neosnippet.vim \
+    $HOME/.vim/neocomplete.vim \
+    $HOME/.vim/dict \
+    $HOME/.vim/swap \
+    $HOME/.vim/backup
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh .vim/dein.vim
+
+wget http://jp2.php.net/distributions/manual/php_manual_ja.tar.gz
+tar -zxvf php_manual_ja.tar.gz -C $HOME/.vim/vim-ref
+rm -rf php_manual_ja.tar.gz
+
+composer global require jetbrains/phpstorm-stubs:dev-master
+composer global require friendsofphp/php-cs-fixer
 
 #create symlink
 rm -rf $HOME/.vimrc
@@ -21,6 +31,7 @@ rm -rf $HOME/.bashrc
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
 ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dotfiles/.bashrc $HOME/.zshrc
+ln -s $HOME/dotfiles/.ctags $HOME/.ctags
 
 #shell change
 chsh -s /bin/zsh

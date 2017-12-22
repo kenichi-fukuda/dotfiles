@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/local/bin
 
 export PATH
 export LC_CTYPE=ja_JP.utf8
@@ -41,21 +41,14 @@ alias mkdir='mkdir -p'
 
 alias sudo='sudo '
 
-alias -g L='| less'
-alias -g G='| grep'
-
 alias mysqldump='mysqldump --skip-dump-date --complete-insert --extended-insert=FALSE'
 
-if which pbcopy >/dev/null 2>&1 ; then
-# Mac
-    alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-# Linux
-    alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-# Cygwin
-    alias -g C='| putclip'
-fi
+alias his='history'
+alias cc='redis-cli keys laravel:* | xargs redis-cli del'
 
 # vim swap remove
 alias swrm='rm ~/.vim/swap/*'
+
+if [ -f $HOME/.bashrc.local ]; then
+    . $HOME/.bashrc.local
+fi

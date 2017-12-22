@@ -1,0 +1,4 @@
+augroup MyTagsAutoCmd
+    autocmd!
+    autocmd BufNewFile,BufRead /path/to/project/*.php setlocal tags=$HOME/.vim/tags/project.tags,$HOME/.vim/tags/global.tags
+augroup END

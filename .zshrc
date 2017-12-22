@@ -11,7 +11,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=$(brew --prefix homebrew/php/php70)/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/local/bin:/usr/local/git/bin
 
 export LANG=ja_JP.UTF-8
 

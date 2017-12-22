@@ -87,7 +87,8 @@ match ZenkakuSpace /　/
 " ----------------------------------------
 " Edit
 " ----------------------------------------
-set autoindent smartindent
+set autoindent
+set smartindent
 set expandtab
 set tabstop=4 softtabstop=0 shiftwidth=4
 set wildmenu
@@ -101,9 +102,7 @@ autocmd BufNewFile,BufRead *.twig   set filetype=html
 
 augroup fileTypeIndent
     autocmd!
-    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.js setlocal tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
@@ -120,16 +119,16 @@ nnoremap <Esc><Esc> :nohlsearch<CR>
 " ----------------------------------------
 " Files
 " ----------------------------------------
-set directory=~/.vim/swap
-set backupdir=~/.vim/backup
+set nobackup
+set autoread
+set noswapfile
+set hidden
 
 " ----------------------------------------
 " Unite.vim
 " ----------------------------------------
 let g:unite_enable_start_insert = 1
-
-" open unite buffer
-nnoremap <space><space> :Unite buffer file_rec<CR>
+nnoremap <space><space> :Unite buffer file_mru<CR>
 
 " ----------------------------------------
 " Align.vim
@@ -225,8 +224,8 @@ let g:ref_use_vimproc = 1
 " ----------------------------------------
 " Taglist
 " ----------------------------------------
-nnoremap <Leader>t :<C-u>Tlist<CR>
-let g:tlist_php_settings        = 'php;n:namespace;c:class;i:interface;t:trait;f:function;d:constant;v:variable'
+nnoremap <silent> <leader>l :TlistToggle<CR>
+let g:tlist_php_settings        = 'php;c:class;d:constant;f:function'
 let g:Tlist_Exit_OnlyWindow     = 1
 let g:Tlist_Show_One_File       = 1
 let g:Tlist_Use_Right_Window    = 1
@@ -252,25 +251,25 @@ function! MyStatuslinePaste() abort "{{{
     return ''
 endfunction "}}}
 
-function! ale#statusline#Status() abort "{{{
-    let l:errorDict = {'lnum': 9999, 'text': ''}
-    let l:bufnr = bufnr('')
-    if has_key(g:ale_buffer_info, l:bufnr) && has_key(g:ale_buffer_info[l:bufnr], 'loclist')
-        for l:row in g:ale_buffer_info[l:bufnr].loclist
-            if l:row.lnum <= l:errorDict.lnum
-                let l:errorDict = {'lnum': l:row.lnum, 'text': l:row.text}
-            endif
-        endfor
-        if l:errorDict.lnum < 9999
-            return '[ ' . l:errorDict.lnum . ' ]' . l:errorDict.text
-        endif
-    endif
-    return ''
-endfunction "}}}
+" function! ale#statusline#Status() abort "{{{
+"     let l:errorDict = {'lnum': 9999, 'text': ''}
+"     let l:bufnr = bufnr('')
+"     if has_key(g:ale_buffer_info, l:bufnr) && has_key(g:ale_buffer_info[l:bufnr], 'loclist')
+"         for l:row in g:ale_buffer_info[l:bufnr].loclist
+"             if l:row.lnum <= l:errorDict.lnum
+"                 let l:errorDict = {'lnum': l:row.lnum, 'text': l:row.text}
+"             endif
+"         endfor
+"         if l:errorDict.lnum < 9999
+"             return '[ ' . l:errorDict.lnum . ' ]' . l:errorDict.text
+"         endif
+"     endif
+"     return ''
+" endfunction "}}}
 
 set laststatus=2
 set cmdheight=1
-set statusline=\ %t\ %{MyStatuslinePaste()}\ %m\ %r\ %h\ %w\ %q\ %{MyStatuslineSyntax()}%=%l/%L\ \|\ %Y\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ 
+" set statusline=\ %t\ %{MyStatuslinePaste()}\ %m\ %r\ %h\ %w\ %q\ %{MyStatuslineSyntax()}%=%l/%L\ \|\ %Y\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ 
 
 nmap <silent> <Subleader>N <Plug>(ale_previous)
 nmap <silent> <Subleader>n <Plug>(ale_next)
@@ -456,6 +455,10 @@ inoremap <C-l> <Right>
 
 " ctags
 nnoremap <C-[> :pop<CR>
+
+vnoremap < <gv
+vnoremap > >gv
+cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
