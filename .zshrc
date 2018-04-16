@@ -7,11 +7,12 @@ zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'c
 
 HIST_STAMPS="yyyy/mm/dd"
 
-plugins=(git)
+plugins=(git tig docker docker-compose laravel5 rails rake rbenv redis-cli vagrant kubectl npm yarn)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/local/bin:/usr/local/git/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/git/bin:$HOME/go/bin:$HOME/.composer/vendor/bin
+export GOPATH=$(go env GOPATH)
 
 export LANG=ja_JP.UTF-8
 
@@ -30,7 +31,7 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt hist_no_store
-function history-all { history -E 1 } 
+function history-all { history -E 1 }
 setopt hist_ignore_dups
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
@@ -47,6 +48,7 @@ alias ll='ls -laF'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias his='history'
 
 alias mkdir='mkdir -p'
 
@@ -54,6 +56,10 @@ alias sudo='sudo '
 
 alias -g L='| less'
 alias -g G='| grep'
+
+alias de='docker exec -it '
+
+alias mysqldump='mysqldump --skip-dump-date --complete-insert --extended-insert=FALSE'
 
 if which pbcopy >/dev/null 2>&1 ; then
 # Mac
@@ -66,5 +72,6 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
-# vim:set ft=zsh:
-eval "$(rbenv init -)"
+if [ -f $HOME/.env ]; then
+    . $HOME/.env
+fi
