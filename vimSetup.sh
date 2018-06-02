@@ -14,7 +14,7 @@ mkdir -p \
     $HOME/.vim/backup
 
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh .vim/dein.vim
+sh ./installer.sh $HOME/.vim/dein.vim
 
 wget http://jp2.php.net/distributions/manual/php_manual_ja.tar.gz
 tar -zxvf php_manual_ja.tar.gz -C $HOME/.vim/vim-ref
