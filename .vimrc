@@ -13,14 +13,16 @@ let &runtimepath = &runtimepath . ',' . s:deinDir . '/repos/github.com/Shougo/de
 if dein#load_state(s:deinDir)
     call dein#begin(s:deinDir)
 
-    call dein#add('KazuakiM/neosnippet-snippets')
     call dein#add('Shougo/dein.vim')
+
+    call dein#add('KazuakiM/neosnippet-snippets')
+    call dein#add('tpope/vim-rails')
+    call dein#add('AndrewRadev/switch.vim')
+
     call dein#add('Shougo/neocomplete.vim')
     call dein#add('Shougo/neoinclude.vim')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-    call dein#add('thinca/vim-quickrun')
-    call dein#add('thinca/vim-ref')
     call dein#add('w0rp/ale')
     call dein#add('scrooloose/nerdtree')
     call dein#add('h1mesuke/vim-alignta')
@@ -36,15 +38,13 @@ if dein#load_state(s:deinDir)
     call dein#add('airblade/vim-gitgutter')
     call dein#add('sheerun/vim-polyglot')
     call dein#add('vim-scripts/unite.vim')
+    call dein#add('basyura/unite-rails')
     call dein#add('vim-scripts/fugitive.vim')
     call dein#add('vim-scripts/grep.vim')
     call dein#add('vim-scripts/CSApprox')
     call dein#add('vim-scripts/taglist.vim')
     call dein#add('honza/vim-snippets')
     call dein#add('tomasr/molokai')
-    call dein#add('joonty/vdebug')
-    call dein#add('arnaud-lb/vim-php-namespace')
-    call dein#add('stephpy/vim-php-cs-fixer')
 
     call dein#end()
     call dein#save_state()
@@ -104,10 +104,14 @@ augroup fileTypeIndent
     autocmd!
     autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.py setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.dart setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=0 shiftwidth=0 noexpandtab
 augroup END
 
 " ----------------------------------------
@@ -180,7 +184,7 @@ let g:multi_cursor_quit_key='<Esc>'
 let g:multi_cursor_start_key='<F6>'
 
 " ----------------------------------------
-" syntastic for PHP
+" syntastic
 " ----------------------------------------
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
@@ -192,6 +196,8 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_ruby_checkers = ['rubocop']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -205,25 +211,6 @@ let g:php_noShortTags   = 1
 let g:php_sql_query     = 1
 let g:php_parent_error_close = 1
 let g:sql_type_default = 'mysql'
-
-" ----------------------------------------
-" vdebug
-" ----------------------------------------
-let g:vdebug_force_ascii = 1
-
-" ----------------------------------------
-" PHP Dict
-" ----------------------------------------
-inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
-nmap <silent>K <Plug>(ref-keyword)
-let g:ref_no_default_key_mappings = 1
-let g:ref_cache_dir = $HOME . '/.vim/vim-ref/cache'
-let g:ref_detect_filetype = {
-            \    'php': 'phpmanual'
-            \}
-let g:ref_phpmanual_path = $HOME . '/.vim/vim-ref/php-chunked-xhtml'
-let g:ref_use_cache = 1
-let g:ref_use_vimproc = 1
 
 " ----------------------------------------
 " Taglist
@@ -255,25 +242,8 @@ function! MyStatuslinePaste() abort "{{{
     return ''
 endfunction "}}}
 
-" function! ale#statusline#Status() abort "{{{
-"     let l:errorDict = {'lnum': 9999, 'text': ''}
-"     let l:bufnr = bufnr('')
-"     if has_key(g:ale_buffer_info, l:bufnr) && has_key(g:ale_buffer_info[l:bufnr], 'loclist')
-"         for l:row in g:ale_buffer_info[l:bufnr].loclist
-"             if l:row.lnum <= l:errorDict.lnum
-"                 let l:errorDict = {'lnum': l:row.lnum, 'text': l:row.text}
-"             endif
-"         endfor
-"         if l:errorDict.lnum < 9999
-"             return '[ ' . l:errorDict.lnum . ' ]' . l:errorDict.text
-"         endif
-"     endif
-"     return ''
-" endfunction "}}}
-
 set laststatus=2
 set cmdheight=1
-" set statusline=\ %t\ %{MyStatuslinePaste()}\ %m\ %r\ %h\ %w\ %q\ %{MyStatuslineSyntax()}%=%l/%L\ \|\ %Y\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ 
 
 nmap <silent> <Subleader>N <Plug>(ale_previous)
 nmap <silent> <Subleader>n <Plug>(ale_next)
@@ -296,12 +266,10 @@ let g:ale_set_highlights                 = 1
 let g:ale_set_signs                      = 1
 let g:ale_warn_about_trailing_whitespace = 0
 
-" neosnippet-snippets
+" ----------------------------------------
 " neosnippet.vim
-" neoinclude.vim
-" neocomplete.vim {{{
+" ----------------------------------------
 imap <silent><expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" neosnippet.vim
 smap <silent><expr><TAB>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 nmap <silent><expr><TAB>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 imap <silent><expr><C-x>  MyNeoCompleteCr()
@@ -309,7 +277,28 @@ imap <silent><expr><CR>   MyNeoCompleteCr()
 nmap <silent><S-TAB> <ESC>a<C-r>=neosnippet#commands#_clear_markers()<CR>
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-"neocomplete.vim
+let g:neosnippet#data_directory                = $HOME . '/.vim/neosnippet.vim'
+let g:neosnippet#disable_runtime_snippets      = {'_' : 1}
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory            = $HOME . '/.vim/dein.vim/repos/github.com/KazuakiM/neosnippet-snippets/neosnippets'
+function! MyNeoCompleteCr() abort "{{{
+    if pumvisible() is# 0
+        return "\<CR>X\<C-h>"
+    elseif neosnippet#expandable_or_jumpable()
+        return "\<Plug>(neosnippet_expand_or_jump)"
+    endif
+    return "\<Left>\<Right>"
+endfunction "}}}
+"}}}
+
+autocmd User Rails.view*            NeoSnippetSource ~/.vim/dein.vim/repos/github.com/KazuakiM/neosnippet-snippets/neosnippets/ruby.rails.view.snip
+autocmd User Rails.controller*      NeoSnippetSource ~/.vim/dein.vim/repos/github.com/KazuakiM/neosnippet-snippets/neosnippets/ruby.rails.controller.snip
+autocmd User Rails/db/migrate/*     NeoSnippetSource ~/.vim/dein.vim/repos/github.com/KazuakiM/neosnippet-snippets/neosnippets/ruby.rails.migrate.snip
+autocmd User Rails/config/routes.rb NeoSnippetSource ~/.vim/dein.vim/repos/github.com/KazuakiM/neosnippet-snippets/neosnippets/ruby.rails.route.snip
+
+" ----------------------------------------
+" neocomplete.vim
+" ----------------------------------------
 let g:neocomplete#auto_completion_start_length = 3
 let g:neocomplete#data_directory               = $HOME .'/.vim/neocomplete.vim'
 let g:neocomplete#delimiter_patterns           = {
@@ -324,7 +313,6 @@ let g:neocomplete#enable_auto_select        = 0
 let g:neocomplete#enable_fuzzy_completion   = 0
 let g:neocomplete#enable_smart_case         = 1
 let g:neocomplete#keyword_patterns          = {'_': '\h\w*'}
-let g:neocomplete#lock_buffer_name_pattern  = '\.log\|.*quickrun.*\|.jax'
 let g:neocomplete#max_keyword_width         = 30
 let g:neocomplete#max_list                  = 8
 let g:neocomplete#min_keyword_length        = 3
@@ -346,76 +334,54 @@ let g:neocomplete#sources#dictionary#dictionaries  = {
 \    'php':        $HOME . '/.vim/dict/php.dict'
 \}
 let g:neocomplete#use_vimproc = 1
-"neoinclude.vim
+
+" ----------------------------------------
+" neoinclude.vim
+" ----------------------------------------
 let g:neoinclude#exts          = {'php': ['php', 'inc', 'tpl']}
 let g:neoinclude#max_processes = 5
-"neosnippet.vim
-let g:neosnippet#data_directory                = $HOME . '/.vim/neosnippet.vim'
-let g:neosnippet#disable_runtime_snippets      = {'_' : 1}
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory            = $HOME . '/.vim/dein.vim/repos/github.com/KazuakiM/neosnippet-snippets/neosnippets'
-function! MyNeoCompleteCr() abort "{{{
-    if pumvisible() is# 0
-        return "\<CR>X\<C-h>"
-    elseif neosnippet#expandable_or_jumpable()
-        return "\<Plug>(neosnippet_expand_or_jump)"
-    endif
-    return "\<Left>\<Right>"
-endfunction "}}}
 "}}}
 
-nnoremap <Leader>run  :<C-u>QuickRun<CR>
-nnoremap <Leader>phpf :<C-u>QuickRun<Space>phpfixer<CR>
-nnoremap <Leader>phpi :<C-u>QuickRun<Space>phpinfo<CR>
-nnoremap <Leader>phpt :<C-u>QuickRun<Space>phpunit<CR>
-let g:quickrun_config = {
-\    '_': {
-\        'hook/close_buffer/enable_empty_data': 0,
-\        'hook/close_buffer/enable_failure':    0,
-\        'outputter':                           'multi:buffer:quickfix',
-\        'outputter/buffer/close_on_empty':     1,
-\        'outputter/buffer/split':              ':botright',
-\        'runner':                              'job'
-\    },
-\    'php': {
-\        'command':                             'php',
-\        'exec':                                '%c %s',
-\        'hook/close_buffer/enable_empty_data': 0,
-\        'hook/close_buffer/enable_failure':    0,
-\        'outputter':                           'buffer',
-\        'outputter/buffer/close_on_empty':     0,
-\        'outputter/buffer/into':               0,
-\        'outputter/buffer/split':              ':botright 7sp'
-\    },
-\    'phpfixer': {
-\        'command':                'php-cs-fixer',
-\        'cmdopt':                 'fix',
-\        'exec':                   '%c %o %s:p',
-\        'outputter':              'buffer',
-\        'outputter/buffer/into':  1,
-\        'outputter/buffer/split': ':botright 7sp',
-\        'runner':                 'system'
-\    },
-\    'phpinfo': {
-\        'command':   'php',
-\        'cmdopt':    '-info',
-\        'exec':      '%c %o',
-\        'outputter': 'buffer'
-\    },
-\    'phpunit': {
-\        'command':   'phpunit',
-\        'exec':      '%c %s',
-\        'outputter': 'buffer'
-\    },
-\    'sql': {
-\        'type': 'sql/mysql'
-\    },
-\    'sql/mysql': {
-\        'exec':                  "%c %o < %s | sed -e 's/\t/|/g'",
-\        'outputter':             'buffer',
-\        'outputter/buffer/into': 1
-\    }
-\}
+set tags=.tags
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Auto_Update = 1
+let Tlist_Use_SingleClick = 1
+map <silent> <leader>l :TlistToggle<CR>
+
+"------------------------------------
+" vim-rails
+"------------------------------------
+""{{{
+"有効化
+let g:rails_default_file='config/database.yml'
+let g:rails_level = 4
+let g:rails_mappings=1
+let g:rails_modelines=0
+" let g:rails_some_option = 1
+" let g:rails_statusline = 1
+" let g:rails_subversion=0
+" let g:rails_syntax = 1
+" let g:rails_url='http://localhost:3000'
+" let g:rails_ctags_arguments='--languages=-javascript'
+" let g:rails_ctags_arguments = ''
+function! SetUpRailsSetting()
+  nnoremap <buffer><Space>r :R<CR>
+  nnoremap <buffer><Space>a :A<CR>
+  nnoremap <buffer><Space>m :Rmodel<Space>
+  nnoremap <buffer><Space>c :Rcontroller<Space>
+  nnoremap <buffer><Space>v :Rview<Space>
+  nnoremap <buffer><Space>p :Rpreview<CR>
+endfunction
+
+aug MyAutoCmd
+  au User Rails call SetUpRailsSetting()
+aug END
+
+aug RailsDictSetting
+  au!
+aug END
 "}}}
 
 " ----------------------------------------
@@ -458,7 +424,8 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
 " ctags
-nnoremap <C-[> :pop<CR>
+map <C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+map <leader><C-]> :tab split  <CR>:exec("tag ".expand("<cword>"))<CR>
 
 vnoremap < <gv
 vnoremap > >gv
