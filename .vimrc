@@ -22,7 +22,6 @@ if dein#load_state(s:deinDir)
     call dein#add('Shougo/neocomplete.vim')
     call dein#add('Shougo/neoinclude.vim')
     call dein#add('Shougo/neosnippet.vim')
-    call dein#add('Shougo/vimproc.vim', {'build': 'make'})
     call dein#add('w0rp/ale')
     call dein#add('scrooloose/nerdtree')
     call dein#add('h1mesuke/vim-alignta')
@@ -39,7 +38,6 @@ if dein#load_state(s:deinDir)
     call dein#add('sheerun/vim-polyglot')
     call dein#add('vim-scripts/unite.vim')
     call dein#add('basyura/unite-rails')
-    call dein#add('vim-scripts/fugitive.vim')
     call dein#add('vim-scripts/grep.vim')
     call dein#add('vim-scripts/CSApprox')
     call dein#add('vim-scripts/taglist.vim')
@@ -333,7 +331,6 @@ let g:neocomplete#sources#dictionary#dictionaries  = {
 \    'javascript': $HOME . '/.vim/dict/javascript.dict',
 \    'php':        $HOME . '/.vim/dict/php.dict'
 \}
-let g:neocomplete#use_vimproc = 1
 
 " ----------------------------------------
 " neoinclude.vim

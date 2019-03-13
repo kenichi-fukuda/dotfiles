@@ -1,5 +1,0 @@
-tagsPhpCmd='ctags --languages=php -f'
-tagsVariable=''
-tagsVariable="$tagsVariable cd /path/to/project; $tagsPhpCmd $HOME/.vim/tags/project.tags /path/to/project;"
-tagsVariable="$tagsVariable cd;"
-alias TAGS=$tagsVariable

@@ -5,14 +5,29 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
-HIST_STAMPS="yyyy/mm/dd"
+HIST_STAMPS="yyyy-mm-dd"
 
-plugins=(git tig docker docker-compose laravel5 rails rake rbenv redis-cli vagrant kubectl npm yarn)
+plugins=(
+    aws
+    docker
+    docker-compose
+    git
+    kubectl
+    npm
+    npx
+    rails
+    rake
+    rbenv
+    redis-cli
+    tig
+    terraform
+    vagrant
+    yarn
+)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/git/bin:$HOME/go/bin:$HOME/.composer/vendor/bin
-export GOPATH=$(go env GOPATH)
+export PATH=/usr/local/flutter/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/local/go/bin
 
 export LANG=ja_JP.UTF-8
 
@@ -40,7 +55,11 @@ bindkey '^N' history-beginning-search-forward
 
 export PAGER=less
 
-umask 022
+export GOPATH=$HOME/local/go
+
+umask 0022
+
+export DOCKER_BUILDKIT=1
 
 alias la='ls -a'
 alias ll='ls -laF'
@@ -48,7 +67,7 @@ alias ll='ls -laF'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias his='history'
+alias his='history -t"%F %T"'
 
 alias mkdir='mkdir -p'
 
