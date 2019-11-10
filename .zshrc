@@ -1,33 +1,41 @@
-export ZSH=$HOME/.oh-my-zsh
+autoload -Uz compinit && compinit
 
-ZSH_THEME="steeef"
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+zplug "zsh-users/zsh-syntax-highlighting", defer:10
+
+zplug "zsh-users/zsh-history-substring-search"
+
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "chrissicool/zsh-256color"
+zstyle ':completion:*' menu select
+
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/tig", from:oh-my-zsh
+zplug "themes/steeef", from:oh-my-zsh
+
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
+zplug load
+
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 HIST_STAMPS="yyyy-mm-dd"
 
-plugins=(
-    aws
-    docker
-    docker-compose
-    git
-    kubectl
-    npm
-    npx
-    rails
-    rake
-    rbenv
-    redis-cli
-    tig
-    terraform
-    vagrant
-    yarn
-)
-
-source $ZSH/oh-my-zsh.sh
-
-export PATH=/usr/local/flutter/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/local/go/bin
+export PATH=$HOME/local/go/bin:$PATH
 
 export LANG=ja_JP.UTF-8
 
@@ -75,8 +83,11 @@ alias sudo='sudo '
 
 alias -g L='| less'
 alias -g G='| grep'
+alias -g X='| xargs'
 
 alias de='docker exec -it '
+alias dr='docker run -it '
+alias da='docker attach '
 
 alias mysqldump='mysqldump --skip-dump-date --complete-insert --extended-insert=FALSE'
 
