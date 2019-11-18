@@ -5,7 +5,7 @@ source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:10
+zplug "zsh-users/zsh-syntax-highlighting"
 
 zplug "zsh-users/zsh-history-substring-search"
 
@@ -13,11 +13,14 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
 zstyle ':completion:*' menu select
+zstyle ':completion::complete:*' use-cache true
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/tig", from:oh-my-zsh
+zplug "plugins/terraform", from:oh-my-zsh
 zplug "themes/steeef", from:oh-my-zsh
 
 if ! zplug check --verbose; then
