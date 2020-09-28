@@ -22,6 +22,7 @@ if dein#load_state(s:deinDir)
     call dein#add('Shougo/neocomplete.vim')
     call dein#add('Shougo/neoinclude.vim')
     call dein#add('Shougo/neosnippet.vim')
+    call dein#add('Shougo/unite.vim')
     call dein#add('w0rp/ale')
     call dein#add('scrooloose/nerdtree')
     call dein#add('h1mesuke/vim-alignta')
@@ -36,7 +37,6 @@ if dein#load_state(s:deinDir)
     call dein#add('bling/vim-airline')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('sheerun/vim-polyglot')
-    call dein#add('vim-scripts/unite.vim')
     call dein#add('basyura/unite-rails')
     call dein#add('vim-scripts/grep.vim')
     call dein#add('vim-scripts/CSApprox')
@@ -110,6 +110,10 @@ augroup fileTypeIndent
     autocmd BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.dart setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=0 shiftwidth=0 noexpandtab
+    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.liquid setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.slim setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.erb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " ----------------------------------------
