@@ -1,0 +1,24 @@
+[user]
+    name = kenichi.fukuda
+    email = kenichi.fukuda07@gmail.com
+[alias]
+    st = status
+    co = checkout
+    f = fetch --prune
+    ci = commit -m
+    di = diff
+    da = !git d | xargs git add --
+    dr = !git d | xargs git reset --
+    stl = !git stash list | fzf --preview 'echo {} | grep -o stash@{.*} | xargs git stash show -p --color=always' --height 90% | grep -o stash@{.*}
+    sta = !git stl | xargs git stash apply
+    std = !git stl | xargs git stash drop
+    ps = "!f() { args=$@; [ -z \"$args\" ] && git push origin HEAD || git push $args; }; f"
+    ca = commit --amend
+    br = branch
+[core]
+	excludesfile = /Users/fukuda/.gitignore_global
+[rebase]
+    autostash = true
+[filesystem "N/A|13.0.2|/dev/disk1s1"]
+	timestampResolution = 6000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
