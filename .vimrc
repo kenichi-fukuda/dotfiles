@@ -18,6 +18,7 @@ if dein#load_state(s:deinDir)
     call dein#add('KazuakiM/neosnippet-snippets')
     call dein#add('tpope/vim-rails')
     call dein#add('AndrewRadev/switch.vim')
+    call dein#add('neoclide/coc.nvim')
 
     call dein#add('Shougo/neocomplete.vim')
     call dein#add('Shougo/neoinclude.vim')
@@ -50,6 +51,10 @@ endif
 
 filetype plugin indent on
 syntax enable
+
+if dein#check_install()
+  call dein#install()
+endif
 
 " ----------------------------------------
 " Colors
@@ -294,7 +299,7 @@ let g:neocomplete#data_directory               = $HOME .'/.vim/neocomplete.vim'
 let g:neocomplete#delimiter_patterns           = {
 \    'javascript': ['.'],
 \    'php':        ['->', '::', '\'],
-\    'ruby':       ['::']
+\    'ruby':       ['::', '.']
 \}
 let g:neocomplete#enable_at_startup         = 1
 let g:neocomplete#enable_auto_close_preview = 1
