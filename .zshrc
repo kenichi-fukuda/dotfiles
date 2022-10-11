@@ -108,3 +108,5 @@ fi
 if [ -f $HOME/.env ]; then
     . $HOME/.env
 fi
+
+eval "$(nodenv init -)"

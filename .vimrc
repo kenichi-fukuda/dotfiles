@@ -4,7 +4,7 @@ if &compatible
     set nocompatible
 endif
 
-let s:deinDir = ! exists('s:deinDir') ? $HOME . '/.vim/dein.vim' : s:deinDir
+let s:deinDir = ! exists('s:deinDir') ? $HOME . '/.cache/dein' : s:deinDir
 let &runtimepath = &runtimepath . ',' . s:deinDir . '/repos/github.com/Shougo/dein.vim'
 
 "*****************************************************************************
@@ -51,6 +51,7 @@ endif
 
 filetype plugin indent on
 syntax enable
+set re=0
 
 if dein#check_install()
   call dein#install()
