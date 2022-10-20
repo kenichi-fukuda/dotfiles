@@ -110,3 +110,4 @@ if [ -f $HOME/.env ]; then
 fi
 
 eval "$(nodenv init -)"
+eval "$(rbenv init - zsh)"
