@@ -91,6 +91,8 @@ alias -g X='| xargs'
 alias de='docker exec -it '
 alias dr='docker run -it '
 alias da='docker attach '
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
 
 alias mysqldump='mysqldump --skip-dump-date --complete-insert --extended-insert=FALSE'
 
@@ -109,5 +111,3 @@ if [ -f $HOME/.env ]; then
     . $HOME/.env
 fi
 
-eval "$(nodenv init -)"
-eval "$(rbenv init - zsh)"
