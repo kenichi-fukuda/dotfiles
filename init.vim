@@ -20,7 +20,7 @@ if dein#load_state(s:deinDir)
     call dein#add('AndrewRadev/switch.vim')
     call dein#add('neoclide/coc.nvim')
 
-    call dein#add('Shougo/neocomplete.vim')
+    " call dein#add('Shougo/neocomplete.vim')
     call dein#add('Shougo/neoinclude.vim')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/unite.vim')
@@ -44,6 +44,7 @@ if dein#load_state(s:deinDir)
     call dein#add('vim-scripts/taglist.vim')
     call dein#add('honza/vim-snippets')
     call dein#add('tomasr/molokai')
+    call dein#add('github/copilot.vim')
 
     call dein#end()
     call dein#save_state()
@@ -271,8 +272,8 @@ nmap <silent><expr><TAB>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnip
 imap <silent><expr><C-x>  MyNeoCompleteCr()
 imap <silent><expr><CR>   MyNeoCompleteCr()
 nmap <silent><S-TAB> <ESC>a<C-r>=neosnippet#commands#_clear_markers()<CR>
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 let g:neosnippet#data_directory                = $HOME . '/.vim/neosnippet.vim'
 let g:neosnippet#disable_runtime_snippets      = {'_' : 1}
 let g:neosnippet#enable_snipmate_compatibility = 1
@@ -295,40 +296,40 @@ autocmd User Rails/config/routes.rb NeoSnippetSource ~/.vim/dein.vim/repos/githu
 " ----------------------------------------
 " neocomplete.vim
 " ----------------------------------------
-let g:neocomplete#auto_completion_start_length = 3
-let g:neocomplete#data_directory               = $HOME .'/.vim/neocomplete.vim'
-let g:neocomplete#delimiter_patterns           = {
-\    'javascript': ['.'],
-\    'php':        ['->', '::', '\'],
-\    'ruby':       ['::', '.']
-\}
-let g:neocomplete#enable_at_startup         = 1
-let g:neocomplete#enable_auto_close_preview = 1
-let g:neocomplete#enable_auto_delimiter     = 1
-let g:neocomplete#enable_auto_select        = 0
-let g:neocomplete#enable_fuzzy_completion   = 0
-let g:neocomplete#enable_smart_case         = 1
-let g:neocomplete#keyword_patterns          = {'_': '\h\w*'}
-let g:neocomplete#max_keyword_width         = 30
-let g:neocomplete#max_list                  = 8
-let g:neocomplete#min_keyword_length        = 3
-let g:neocomplete#sources                   = {
-\    '_':          ['neosnippet', 'file',               'buffer'],
-\    'css':        ['neosnippet',         'dictionary', 'buffer'],
-\    'html':       ['neosnippet', 'file', 'dictionary', 'buffer'],
-\    'javascript': ['neosnippet', 'file', 'dictionary', 'buffer'],
-\    'php':        ['neosnippet', 'file', 'dictionary', 'buffer']
-\}
-let g:neocomplete#sources#buffer#cache_limit_size  = 50000
-let g:neocomplete#sources#buffer#disabled_pattern  = '\.log\|\.jax'
-let g:neocomplete#sources#buffer#max_keyword_width = 30
-let g:neocomplete#sources#dictionary#dictionaries  = {
-\    '_':          '',
-\    'css':        $HOME . '/.vim/dict/css.dict',
-\    'html':       $HOME . '/.vim/dict/html.dict',
-\    'javascript': $HOME . '/.vim/dict/javascript.dict',
-\    'php':        $HOME . '/.vim/dict/php.dict'
-\}
+" let g:neocomplete#auto_completion_start_length = 3
+" let g:neocomplete#data_directory               = $HOME .'/.vim/neocomplete.vim'
+" let g:neocomplete#delimiter_patterns           = {
+" \    'javascript': ['.'],
+" \    'php':        ['->', '::', '\'],
+" \    'ruby':       ['::', '.']
+" \}
+" let g:neocomplete#enable_at_startup         = 1
+" let g:neocomplete#enable_auto_close_preview = 1
+" let g:neocomplete#enable_auto_delimiter     = 1
+" let g:neocomplete#enable_auto_select        = 0
+" let g:neocomplete#enable_fuzzy_completion   = 0
+" let g:neocomplete#enable_smart_case         = 1
+" let g:neocomplete#keyword_patterns          = {'_': '\h\w*'}
+" let g:neocomplete#max_keyword_width         = 30
+" let g:neocomplete#max_list                  = 8
+" let g:neocomplete#min_keyword_length        = 3
+" let g:neocomplete#sources                   = {
+" \    '_':          ['neosnippet', 'file',               'buffer'],
+" \    'css':        ['neosnippet',         'dictionary', 'buffer'],
+" \    'html':       ['neosnippet', 'file', 'dictionary', 'buffer'],
+" \    'javascript': ['neosnippet', 'file', 'dictionary', 'buffer'],
+" \    'php':        ['neosnippet', 'file', 'dictionary', 'buffer']
+" \}
+" let g:neocomplete#sources#buffer#cache_limit_size  = 50000
+" let g:neocomplete#sources#buffer#disabled_pattern  = '\.log\|\.jax'
+" let g:neocomplete#sources#buffer#max_keyword_width = 30
+" let g:neocomplete#sources#dictionary#dictionaries  = {
+" \    '_':          '',
+" \    'css':        $HOME . '/.vim/dict/css.dict',
+" \    'html':       $HOME . '/.vim/dict/html.dict',
+" \    'javascript': $HOME . '/.vim/dict/javascript.dict',
+" \    'php':        $HOME . '/.vim/dict/php.dict'
+" \}
 
 " ----------------------------------------
 " neoinclude.vim
@@ -425,6 +426,8 @@ map <leader><C-]> :tab split  <CR>:exec("tag ".expand("<cword>"))<CR>
 vnoremap < <gv
 vnoremap > >gv
 cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
+
+set mouse=
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))

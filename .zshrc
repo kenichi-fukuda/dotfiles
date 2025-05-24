@@ -66,8 +66,6 @@ bindkey '^N' history-beginning-search-forward
 
 export PAGER=less
 
-export GOPATH=$HOME/local/go
-
 umask 0022
 
 export DOCKER_BUILDKIT=1
@@ -94,8 +92,6 @@ alias da='docker attach '
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 
-alias mysqldump='mysqldump --skip-dump-date --complete-insert --extended-insert=FALSE'
-
 if which pbcopy >/dev/null 2>&1 ; then
 # Mac
     alias -g C='| pbcopy'
@@ -110,4 +106,3 @@ fi
 if [ -f $HOME/.env ]; then
     . $HOME/.env
 fi
-
